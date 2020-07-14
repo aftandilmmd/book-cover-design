@@ -14,47 +14,47 @@
         <div class="mb-5">
             <label class="block mb-2" for="book-name">Kitap adı:</label>
             <div class="flex">
-                <input name="book-name" id="book-name" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input type="color" name="book-name-color" id="" class="h-10">
+                <input oninput="updateContent(this)" data-target=".book-name" name="book-name" id="book-name" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
+                <input oninput="updateContent(this)" data-target=".book-name" type="color" class="h-10">
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="writer-name">Yazar adı:</label>
             <div class="flex">
-                <input name="writer-name" id="writer-name" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input type="color" name="writer-name-color" id="" class="h-10">
+                <input oninput="updateContent(this)" data-target=".writer-name" id="writer-name" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
+                <input oninput="updateContent(this)" data-target=".writer-name" type="color" class="h-10">
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="publisher">Yayınevi:</label>
             <div class="flex">
-                <input name="publisher" id="publisher" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input type="color" name="publisher-color" id="" class="h-10">
+                <input oninput="updateContent(this)" data-target=".publisher" id="publisher" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
+                <input oninput="updateContent(this)" data-target=".publisher" type="color" class="h-10">
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="publish-count">Baskı sayı:</label>
             <div class="flex">
-                <input name="publish-count" id="publish-count" type="number" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input type="color" name="publish-count-color" id="" class="h-10">
+                <input oninput="updateContent(this)" data-target=".publish-count" id="publish-count" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
+                <input oninput="updateContent(this)" data-target=".publish-count" type="color" class="h-10">
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="publish-year">Baskı Yılı:</label>
             <div class="flex">
-                <input name="publish-year" id="publish-year" type="number" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input type="color" name="publish-year-color" id="" class="h-10">
+                <input oninput="updateContent(this)" data-target=".publish-year" id="publish-year" type="number" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
+                <input oninput="updateContent(this)" data-target=".publish-year" type="color" class="h-10">
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="image">Kapak resim:</label>
             <div class="flex">
-                <input name="image" id="image" type="file" class="px-5 py-2 border border-gray-300 rounded w-full h-full">
+                <input onchange="updateBackground(this)" name="image" id="image" type="file" class="px-5 py-2 border border-gray-300 rounded w-full h-full">
             </div>
         </div>
 
@@ -64,11 +64,11 @@
         
         <div class="cover relative flex flex-col bg-white shadow-xl mx-auto" style="width: 600px; height: 900px;">
             
-            <div class="writer-name text-lg font-semibold mx-auto mt-8" style="text-shadow: 0 1px 5px #fff;"></div>
+            <div class="writer-name text-lg font-semibold mx-auto mt-8"></div>
 
-            <div class="book-name text-5xl m-auto p-5" style="text-shadow: 0 1px 5px #fff;"></div>
+            <div class="book-name text-5xl m-auto p-5"></div>
 
-            <div class="flex justify-between p-6 font-semibold" style="text-shadow: 0 1px 5px #fff;">
+            <div class="flex justify-between p-6 font-semibold">
                 <div class="publisher"></div>
                 <div class="publish-year"></div>
                 <div class="publish-count"></div>
@@ -81,66 +81,53 @@
 
     <script>
 
-        var bookName = document.querySelector('.book-name');
-        var bookNameInput = document.querySelector('input[name="book-name"]');
-        var bookNameColor = document.querySelector('input[name="book-name-color"]');
+        function el( selector ){
 
-        bookNameInput.oninput = e => { bookName.innerText = e.target.value; }
-        bookNameColor.oninput = e => { bookName.style.color = e.target.value; }
+            var items = document.querySelectorAll( selector );
 
-        var writerName = document.querySelector('.writer-name');
-        var writerNameInput = document.querySelector('input[name="writer-name"]');
-        var writerNameColor = document.querySelector('input[name="writer-name-color"]');
-
-        writerNameInput.oninput = e => { writerName.innerText = e.target.value; }
-        writerNameColor.oninput = e => { writerName.style.color = e.target.value; }
-
-
-        var publisher = document.querySelector('.publisher');
-        var publisherNameInput = document.querySelector('input[name="publisher"]');
-        var publisherNameColor = document.querySelector('input[name="publisher-color"]');
-
-        publisherNameInput.oninput = e => { publisher.innerText = e.target.value; }
-        publisherNameColor.oninput = e => { publisher.style.color = e.target.value; }
-
-        var publishCount = document.querySelector('.publish-count');
-        var publishCountInput = document.querySelector('input[name="publish-count"]');
-        var publishCountColor = document.querySelector('input[name="publish-count-color"]');
-
-        publishCountInput.oninput = e => { publishCount.innerText = e.target.value + ".Baskı"; }
-        publishCountColor.oninput = e => { publishCount.style.color = e.target.value; }
-
-        var publishYear = document.querySelector('.publish-year');
-        var publishYearInput = document.querySelector('input[name="publish-year"]');
-        var publishYearColor = document.querySelector('input[name="publish-year-color"]');
-
-        publishYearInput.oninput = e => { publishYear.innerText = e.target.value; }
-        publishYearColor.oninput = e => { publishYear.style.color = e.target.value; }
-
-        var cover = document.querySelector('.cover');
-
-        var imageInput = document.querySelector('input[name="image"]');
-
-        imageInput.onchange = function(){
-            getImage(imageInput);
-        }
-
-        function getImage(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.readAsDataURL( input.files[0] );
-                
-                reader.onload = function(e) {
-                    cover.style.backgroundImage     = "url("+ e.target.result +")";
-                    cover.style.backgroundPosition  = "center";
-                    cover.style.backgroundSize      = "cover";
-                }
-                
+            if( items.length == 1){
+                return items[0];
             }
 
+            return items;
+        }
+
+        function getData(input) {
+
+            return new Promise(function(resolve, reject){
+
+                if (input.files && input.files[0]) {
+
+                    var reader = new FileReader();
+
+                    reader.readAsDataURL( input.files[0] );
+
+                    reader.onload = e => resolve( e.target.result );
+
+                }
+
+            });
+
+        }
+
+        function updateBackground( image ){
+
+            var cover = el(".cover");
+
+            getData( image ).then( data => {
+                cover.style.backgroundImage     = "url("+ data +")";
+                cover.style.backgroundPosition  = "center";
+                cover.style.backgroundSize      = "cover";
+            });
+        }
+
+        function updateContent( element ){
+            var target = el( element.dataset.target ); // data-target=".classname"
+            if(element.type == "color"){
+                target.style.color = element.value;
+            }else{
+                target.innerText = element.value;
+            }
         }
         
     </script>
