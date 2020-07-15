@@ -5,7 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Book Cover Design</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        .left-arrow::before,
+        .left-arrow::after {
+            content: "";
+            border-width: 8px;
+            border-color: white;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            position: absolute;
+            left: -8px;
+            top: 16px;
+            z-index: 2;
+            transform: rotate(-45deg);
+        }
 
+        .left-arrow::after {
+            border-left-color: rgb(228, 228, 228);
+            border-top-color: rgb(228, 228, 228);
+            top: 17px;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body class="h-screen bg-gray-200 flex">
 
@@ -13,41 +35,176 @@
         
         <div class="mb-5">
             <label class="block mb-2" for="book-name">Kitap adı:</label>
-            <div class="flex">
+            <div class="flex relative">
+                
                 <input oninput="updateContent(this)" data-target=".book-name" name="book-name" id="book-name" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input oninput="updateContent(this)" data-target=".book-name" type="color" class="h-10">
+                
+                <button onclick="toggleCustomizer(this)" class="relative border border-gray-300 rounded px-3 text-gray-700 focus:outline-none hover:border-gray-400">
+                    <i class="fas fa-cog"></i>
+                </button>
+
+                <div class="mini-panel absolute flex space-x-2 px-2 py-2 -mt-2 border border-gray-300 shadow-md rounded bg-white top-0 ml-16 left-arrow hidden" style="margin-left: calc(100% + 2rem);">
+
+                    <select data-action="font" onchange="updateContent(this)" data-target=".book-name" class="w-32 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <select data-action="font-size" onchange="updateContent(this)" data-target=".book-name" class="w-20 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <button data-action="bold" onclick="updateContent(this)" data-target=".book-name" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-bold"></i>
+                    </button>
+
+                    <button data-action="italic" onclick="updateContent(this)" data-target=".book-name" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-italic"></i>
+                    </button>
+
+                    <input oninput="updateContent(this)" data-target=".book-name" type="color" class="w-8 h-8 focus:outline-none">
+                
+                </div>
+
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="writer-name">Yazar adı:</label>
-            <div class="flex">
+            <div class="flex relative">
+
                 <input oninput="updateContent(this)" data-target=".writer-name" id="writer-name" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input oninput="updateContent(this)" data-target=".writer-name" type="color" class="h-10">
+
+                <button onclick="toggleCustomizer(this)" class="relative border border-gray-300 rounded px-3 text-gray-700 focus:outline-none hover:border-gray-400">
+                    <i class="fas fa-cog"></i>
+                </button>
+
+                <div class="mini-panel absolute flex space-x-2 px-2 py-2 -mt-2 border border-gray-300 shadow-md rounded bg-white top-0 ml-16 left-arrow hidden" style="margin-left: calc(100% + 2rem);">
+
+                    <select data-action="font" onchange="updateContent(this)" data-target=".writer-name" class="w-32 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <select data-action="font-size" onchange="updateContent(this)" data-target=".writer-name" class="w-20 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <button data-action="bold" onclick="updateContent(this)" data-target=".writer-name" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-bold"></i>
+                    </button>
+
+                    <button data-action="italic" onclick="updateContent(this)" data-target=".writer-name" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-italic"></i>
+                    </button>
+
+                    <input oninput="updateContent(this)" data-target=".writer-name" type="color" class="w-8 h-8 focus:outline-none">
+                
+                </div>
+
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="publisher">Yayınevi:</label>
-            <div class="flex">
+            <div class="flex relative">
+
                 <input oninput="updateContent(this)" data-target=".publisher" id="publisher" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input oninput="updateContent(this)" data-target=".publisher" type="color" class="h-10">
+                
+                <button onclick="toggleCustomizer(this)" class="relative border border-gray-300 rounded px-3 text-gray-700 focus:outline-none hover:border-gray-400">
+                    <i class="fas fa-cog"></i>
+                </button>
+
+                <div class="mini-panel absolute flex space-x-2 px-2 py-2 -mt-2 border border-gray-300 shadow-md rounded bg-white top-0 ml-16 left-arrow hidden" style="margin-left: calc(100% + 2rem);">
+
+                    <select data-action="font" onchange="updateContent(this)" data-target=".publisher" class="w-32 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <select data-action="font-size" onchange="updateContent(this)" data-target=".publisher" class="w-20 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <button data-action="bold" onclick="updateContent(this)" data-target=".publisher" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-bold"></i>
+                    </button>
+
+                    <button data-action="italic" onclick="updateContent(this)" data-target=".publisher" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-italic"></i>
+                    </button>
+
+                    <input oninput="updateContent(this)" data-target=".publisher" type="color" class="w-8 h-8 focus:outline-none">
+                
+                </div>
+
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="publish-count">Baskı sayı:</label>
-            <div class="flex">
+            <div class="flex relative">
+
                 <input oninput="updateContent(this)" data-target=".publish-count" id="publish-count" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input oninput="updateContent(this)" data-target=".publish-count" type="color" class="h-10">
+                
+                <button onclick="toggleCustomizer(this)" class="relative border border-gray-300 rounded px-3 text-gray-700 focus:outline-none hover:border-gray-400">
+                    <i class="fas fa-cog"></i>
+                </button>
+
+                <div class="mini-panel absolute flex space-x-2 px-2 py-2 -mt-2 border border-gray-300 shadow-md rounded bg-white top-0 ml-16 left-arrow hidden" style="margin-left: calc(100% + 2rem);">
+
+                    <select data-action="font" onchange="updateContent(this)" data-target=".publish-count" class="w-32 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <select data-action="font-size" onchange="updateContent(this)" data-target=".publish-count" class="w-20 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                    
+                    </select>
+
+                    <button data-action="bold" onclick="updateContent(this)" data-target=".publish-count" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-bold"></i>
+                    </button>
+
+                    <button data-action="italic" onclick="updateContent(this)" data-target=".publish-count" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-italic"></i>
+                    </button>
+
+                    <input oninput="updateContent(this)" data-target=".publish-count" type="color" class="w-8 h-8 focus:outline-none">
+                
+                </div>
+
             </div>
         </div>
 
         <div class="mb-5">
             <label class="block mb-2" for="publish-year">Baskı Yılı:</label>
-            <div class="flex">
-                <input oninput="updateContent(this)" data-target=".publish-year" id="publish-year" type="number" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
-                <input oninput="updateContent(this)" data-target=".publish-year" type="color" class="h-10">
+            <div class="flex relative">
+
+                <input oninput="updateContent(this)" data-target=".publish-year" id="publish-year" type="text" class="px-5 py-2 border border-gray-300 rounded w-full h-full mr-2">
+                
+                <button onclick="toggleCustomizer(this)" class="relative border border-gray-300 rounded px-3 text-gray-700 focus:outline-none hover:border-gray-400">
+                    <i class="fas fa-cog"></i>
+                </button>
+
+                <div class="mini-panel absolute flex space-x-2 px-2 py-2 -mt-2 border border-gray-300 shadow-md rounded bg-white top-0 ml-16 left-arrow hidden" style="margin-left: calc(100% + 2rem);">
+
+                    <select data-action="font" onchange="updateContent(this)" data-target=".publish-year" class="w-32 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+
+                    </select>
+
+                    <select data-action="font-size" onchange="updateContent(this)" data-target=".publish-year" class="w-20 border py-1 px-2 border-gray-200 hover:border-gray-400 rounded focus:outline-none">
+                        
+                    </select>
+
+                    <button data-action="bold" onclick="updateContent(this)" data-target=".publish-year" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-bold"></i>
+                    </button>
+
+                    <button data-action="italic" onclick="updateContent(this)" data-target=".publish-year" class="focus:outline-none border border-gray-200 rounded inline-block text-center w-8 flex items-center justify-center">
+                        <i class="fas fa-italic"></i>
+                    </button>
+
+                    <input oninput="updateContent(this)" data-target=".publish-year" type="color" class="w-8 h-8 focus:outline-none">
+                
+                </div>
+
             </div>
         </div>
 
@@ -62,13 +219,13 @@
 
     <div class="w-10/12 p-5 flex items-center h-full">
         
-        <div class="cover relative flex flex-col bg-white shadow-xl mx-auto" style="width: 600px; height: 900px;">
+        <div class="cover relative flex flex-col bg-white shadow-xl mx-auto p-10" style="width: 600px; height: 900px;">
             
-            <div class="writer-name text-lg font-semibold mx-auto mt-8"></div>
+            <div class="writer-name text-lg font-semibold mx-auto text-center"></div>
 
-            <div class="book-name text-5xl m-auto p-5"></div>
+            <div class="book-name text-5xl m-auto text-center"></div>
 
-            <div class="flex justify-between p-6 font-semibold">
+            <div class="flex justify-between font-semibold">
                 <div class="publisher"></div>
                 <div class="publish-year"></div>
                 <div class="publish-count"></div>
@@ -79,6 +236,7 @@
     </div>
     
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js" integrity="sha512-M+hXwltZ3+0nFQJiVke7pqXY7VdtWW2jVG31zrml+eteTP7im25FdwtLhIBTWkaHRQyPrhO2uy8glLMHZzhFog==" crossorigin="anonymous"></script>
     <script>
 
         function el( selector ){
@@ -122,14 +280,72 @@
         }
 
         function updateContent( element ){
-            var target = el( element.dataset.target ); // data-target=".classname"
+
+            var target = el( element.dataset.target );
+
+            if( element.dataset.action == "bold"){
+                element.classList.toggle("bg-gray-700");
+                element.classList.toggle("text-white");
+                return target.style.fontWeight = (target.style.fontWeight == "bold") ? "normal" : "bold";
+            }
+
+            if( element.dataset.action == "italic"){
+                element.classList.toggle("bg-gray-700");
+                element.classList.toggle("text-white");
+                return target.style.fontStyle = (target.style.fontStyle == "italic") ? "normal" : "italic";
+            }
+
+            if( element.dataset.action == "font"){
+                return target.style.fontFamily = element.value;
+            }
+
+            if( element.dataset.action == "font-size"){
+                return target.style.fontSize = element.value;
+            }
+
             if(element.type == "color"){
                 target.style.color = element.value;
-            }else{
+            }else if(element.type == "text"){
                 target.innerText = element.value;
             }
         }
         
+        function toggleCustomizer( el ){
+            
+            el.nextElementSibling.classList.toggle("hidden");
+
+        }
+
+
+        // Add Font Sizes Dynamically
+        var fontSizes = ["", "1rem", "2rem", "3rem", "4rem", "5rem", "6rem", "7rem", "8rem", "9rem", "10rem"];
+
+        el('[data-action="font-size"]').forEach(function( el ){
+
+            fontSizes.forEach(function( size ){
+                var option           = document.createElement('option');
+                    option.value     = size;
+                    option.innerText = size;
+                el.appendChild( option );
+            });
+
+        })
+
+
+        // Add Font Families Dynamically
+        var fonts = ["", "Arial", "Times New Roman", "Broadway", "Chiller", "Algerian", "French Script MT", "Gabriola", "Vivaldi"];
+
+        el('[data-action="font"]').forEach(function( el ){
+
+            fonts.forEach(function( font ){
+                var option           = document.createElement('option');
+                    option.value     = font;
+                    option.innerText = font;
+                el.appendChild( option );
+            });
+
+        })
+
     </script>
     
 </body>
